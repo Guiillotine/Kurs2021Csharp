@@ -141,7 +141,7 @@ namespace Kurs2021Csharp
     {
         string path = AppContext.BaseDirectory;
         FileStream f = new FileStream(path + "/" + fnamePKD, FileMode.Append);
-        StreamWriter stream = new StreamWriter(f);
+        StreamWriter stream = new StreamWriter(f, Encoding.GetEncoding(1251));
         for (int i = 0; i < GetRowsNum(); i++)
             stream.WriteLine("{0}\n{1}\n{2}\n{3}\n{4}\n{5}\n{6}", tableRows[i].GetTaskNumber(), tableRows[i].GetDateReg(), tableRows[i].GetCipher(), tableRows[i].GetProjName(), tableRows[i].GetSurname(), tableRows[i].GetDateEnd(), tableRows[i].GetVolume());
         stream.Close();
@@ -249,51 +249,6 @@ namespace Kurs2021Csharp
     private RowPKD[] tableRows = new RowPKD[1];
     private int rowsNum;
 }
-
-
-
-
-
- /*   public class TablePKD2
-    {
-        public void AddStr(RowPKD2 tableRow)
-        {
-            if (rowsNum > 0) ArrResize();
-            tableRows[rowsNum].taskNumber = tableRow.taskNumber;
-            rowsNum++;
-        }
-        public void ArrResize()
-        {
-            RowPKD[] tableRows2 = new RowPKD[rowsNum + 1];
-            for (int i = 0; i < rowsNum; i++) tableRows2[i] = (RowPKD)tableRows[i].Clone();
-            tableRows = tableRows2;
-        }
-        private RowPKD[] tableRows = new RowPKD[1];
-        private int rowsNum = 0;
-    }
-
-    public class RowPKD2
-    {
-        public RowPKD2()
-        {
-        }
-        public RowPKD2(string taskNumber)
-        {
-            this.taskNumber = taskNumber;
-        }
-        //public object Clone()
-        //{
-           // return new RowPKD2(taskNumber);
-        //}
-        public String taskNumber;
-    }*/
-
-
-
-
-
-
-
 
 }
 

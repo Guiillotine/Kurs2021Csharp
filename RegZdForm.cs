@@ -16,7 +16,16 @@ namespace Kurs2021Csharp
         {
             InitializeComponent();
         }
-
+        private void RegZdForm_Load(object sender, EventArgs e)
+        {
+            if (Globals.fmode == 0)
+            {
+                this.Text = "Учет ПКД (Пользователь: " + Globals.login + ")";
+                this.toolStripButtonCorrect.Visible = false;
+                this.изменитьСтрокуToolStripMenuItem.Visible = false;
+            }
+            else this.Text = "Учет ПКД (Режим расширенного доступа)";
+        }
         private void toolStripButtonOpenZd_Click(object sender, EventArgs e)
         {
             PKDForm form = new PKDForm();
@@ -59,11 +68,29 @@ namespace Kurs2021Csharp
             Exp3 form = new Exp3();
             form.Show();
         }
-
         private void справкаToolStripMenuItem_Click(object sender, EventArgs e)
         {
             HelpForm form = new HelpForm();
             form.Show();
+        }
+        private void RegZdForm_Activated(object sender, EventArgs e)
+        {
+            for (int i = 0; i < 10; i++) ;
+            while (dataGridView1.Rows.Count != 0) dataGridView1.Rows.Remove(dataGridView1.Rows[dataGridView1.Rows.Count - 1]);
+            for (int i = 0; i < 10; i++) ;
+            for (int i = 0; i < Globals.tableRegZd.GetRowsNum(); i++)
+            {
+                dataGridView1.Rows.Add();
+                dataGridView1.Rows[i].Cells[0].Value = (i + 1).ToString();
+                dataGridView1.Rows[i].Cells[1].Value = Globals.tableRegZd.GetTableRow(i).GetTaskNumber();
+                dataGridView1.Rows[i].Cells[2].Value = Globals.tableRegZd.GetTableRow(i).GetDate();
+                dataGridView1.Rows[i].Cells[3].Value = Globals.tableRegZd.GetTableRow(i).GetCustomer();
+                dataGridView1.Rows[i].Cells[4].Value = Globals.tableRegZd.GetTableRow(i).GetTask();
+                dataGridView1.Rows[i].Cells[5].Value = Globals.tableRegZd.GetTableRow(i).GetProjNumber();
+                dataGridView1.Rows[i].Cells[6].Value = Globals.tableRegZd.GetTableRow(i).GetSurname();
+                dataGridView1.Rows[i].Cells[7].Value = Globals.tableRegZd.GetTableRow(i).GetStatus();
+                dataGridView1.Rows[i].Cells[8].Value = Globals.tableRegZd.GetTableRow(i).GetNote();
+            }
         }
     }
 }

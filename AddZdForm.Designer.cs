@@ -252,6 +252,7 @@ namespace Kurs2021Csharp
             this.button_in_ok.TabIndex = 106;
             this.button_in_ok.Text = "Ок";
             this.button_in_ok.UseVisualStyleBackColor = true;
+            this.button_in_ok.Click += new System.EventHandler(this.button_in_ok_Click);
             // 
             // label6
             // 
@@ -342,6 +343,7 @@ namespace Kurs2021Csharp
             this.Name = "AddZdForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Добавление заданий на проектирование";
+            this.Load += new System.EventHandler(this.AddZdForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_in)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

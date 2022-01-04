@@ -8,7 +8,7 @@ namespace Kurs2021Csharp
 {
     public static class Globals
     {
-        //public static TableRegZd tableRegZd;
+        public static TableRegZd tableRegZd = new TableRegZd();
         public static TablePKD tablePKD = new TablePKD();
         public static string fnamePKD = "PKD";
         public static string fnameRegZd = "RegZ";

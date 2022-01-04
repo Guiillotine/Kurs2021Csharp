@@ -19,10 +19,12 @@ namespace Kurs2021Csharp
 
         private void buttonOk_Click(object sender, EventArgs e)
         {
-			Globals.tablePKD.Getfile(Globals.fnamePKD);
+			int f = 1;
+			if (Globals.tableRegZd.Getfile(Globals.fnameRegZd) == 0) { f = 0; MessageBox.Show("Не удалось открыть файл с регистрацией заданий на проектирование", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+			if ((Globals.tablePKD.Getfile(Globals.fnamePKD) == 0) && (f == 1)) MessageBox.Show("Не удалось открыть файл с журналом учета ПКД", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			PKDForm form1 = new PKDForm();
-            form1.Show();
-            this.Hide();
+            if (f == 1) form1.Show();
+			this.Hide();
 
 			/*
             fstream file;
