@@ -7,19 +7,29 @@ using System.IO;
 
 namespace Kurs2021Csharp
 {
-    class RowPKD
+    public class RowPKD
     {
         public RowPKD()
         {
         }
-        /*void SetTaskNumber(string taskNumber)
+        public RowPKD(string taskNumber, string dateReg, string cipher, string projName, string surname, string dateEnd, int volume)
+        {
+            this.taskNumber = taskNumber;
+            this.dateReg = dateReg;
+            this.cipher = cipher;
+            this.projName = projName;
+            this.surname = surname;
+            this.dateEnd = dateEnd;
+            this.volume = volume;
+        }
+        public void SetTaskNumber(string taskNumber)
         {
             this.taskNumber = taskNumber;
         }
-        string GetTaskNumber()
+        public string GetTaskNumber()
         {
             return(taskNumber);
-        }*/
+        }
         public void SetDateReg(string dateReg)
         {
             this.dateReg = dateReg;
@@ -44,14 +54,14 @@ namespace Kurs2021Csharp
         {
             return (projName);
         }
-        /*void SetSurname(string surname)
+        public void SetSurname(string surname)
          {
              this.surname = surname;
          }
-         string GetSurname()
+        public string GetSurname()
          {
              return(surname);
-         }*/
+         }
         public void SetDateEnd(string dateEnd)
         {
             this.dateEnd = dateEnd;
@@ -71,12 +81,17 @@ namespace Kurs2021Csharp
         public void Putfile(string fnamePKD)
         {
             string path = AppContext.BaseDirectory;//AppDomain.CurrentDomain.BaseDirectory;//Directory.GetCurrentDirectory();
-            FileStream f = new FileStream(path + "/1.txt", FileMode.Append);
+            FileStream f = new FileStream(path + "/" + fnamePKD, FileMode.Append);
             StreamWriter stream = new StreamWriter(f);
             stream.WriteLine("{0}\n{1}\n{2}\n{3}\n{4}\n{5}\n{6}", taskNumber, dateReg, cipher, projName, surname, dateEnd, volume);
             stream.Close();
             f.Close();
         }
+        public object Clone()
+        {
+            return new RowPKD(taskNumber, dateReg, cipher, projName, surname, dateEnd, volume);
+        }
+
         private String taskNumber;
 
         private String dateReg;
@@ -89,6 +104,187 @@ namespace Kurs2021Csharp
         private int volume;
 
     }
+
+
+
+    public class TablePKD
+    {
+    public TablePKD()
+    {
+        rowsNum = 0;
+    }
+    public void AddStr(RowPKD tableRow)
+    {
+        if (rowsNum > 0) ArrResize();
+        tableRows[rowsNum] = (RowPKD)tableRow.Clone();
+        //tableRows[rowsNum] = tableRow;
+        rowsNum++;
+    }
+    public void EditStr(int numberStr, RowPKD tableRow)
+    {
+        tableRows[numberStr - 1] = tableRow;
+    }
+    public void ArrResize()
+    {
+        RowPKD[] tableRows2 = new RowPKD[rowsNum + 1];
+        for (int i = 0; i < rowsNum; i++) tableRows2[i] = (RowPKD)tableRows[i].Clone();
+        tableRows = tableRows2;
+    }
+    public int GetRowsNum()
+    {
+        return (rowsNum);
+    }
+    public RowPKD GetTableRow(int index)
+    {
+        return tableRows[index];
+    }
+    public void Putfile(string fnamePKD)
+    {
+        string path = AppContext.BaseDirectory;
+        FileStream f = new FileStream(path + "/" + fnamePKD, FileMode.Append);
+        StreamWriter stream = new StreamWriter(f);
+        for (int i = 0; i < GetRowsNum(); i++)
+            stream.WriteLine("{0}\n{1}\n{2}\n{3}\n{4}\n{5}\n{6}", tableRows[i].GetTaskNumber(), tableRows[i].GetDateReg(), tableRows[i].GetCipher(), tableRows[i].GetProjName(), tableRows[i].GetSurname(), tableRows[i].GetDateEnd(), tableRows[i].GetVolume());
+        stream.Close();
+        f.Close();
+    }
+    public void Getfile(string fnamePKD)
+    {
+        /*fstream f;
+        string str;
+        f.open(fnamePKD, fstream::in | fstream::out | fstream::app);
+        if (!f.is_open()) return 0;
+        int i = 0;
+        RowPKD row;
+        while (!f.eof())
+        {
+            getline(f, str);
+            switch (i)
+            {
+                case 0: row.SetTaskNumber(str); break;
+                case 1: row.SetDateReg(str); break;
+                case 2: row.SetCipher(str); break;
+                case 3: row.SetProjName(str); break;
+                case 4: row.SetSurname(str); break;
+                case 5: row.SetDateEnd(str); break;
+                case 6: row.SetVolume(stoi(str)); AddStr(row);
+            }
+            i++;
+            if (i == 7) i = 0;
+        }
+        f.close();
+        return 1;*/
+    }
+    public int ExpBigTable(string fname, int from, int to)
+    {
+        /*ofstream f;
+        f.open(fname);
+        if (!f.is_open()) return 0;
+        f << "                                                           ЖУРНАЛ УЧЕТА ВЫПОЛНЕННОЙ ПРОЕКТНО-КОНСТРУКТОРСКОЙ ДОКУМЕНТАЦИИ\n\n";
+        f << "   НОМЕР       ДАТА      ШИФР                                            НАИМЕНОВАНИЕ ПРОЕКТА                                                ИСПОЛНИТЕЛЬ      ДАТА ЗАВЕРШЕНИЯ ОБЪЕМ\n";
+        f << "  ЗАДАНИЯ  РЕГИСТРАЦИИ  ПРОЕКТА                                                                                                                                   ПРОЕКТА   (в  л.А4)\n";
+        for (int i = from - 1; i < to; i++)
+        {
+            if ((tableRows[i].GetVolume() == 0) || (tableRows[i].GetDateEnd() == "00.00.0000")) continue;
+            f << "| ";
+            f << tableRows[i].GetTaskNumber();
+            for (int j = tableRows[i].GetTaskNumber().length(); j < 8; j++) f << ' ';
+            f << "| ";
+            f << tableRows[i].GetDateReg();
+            for (int j = tableRows[i].GetDateReg().length(); j < 11; j++) f << ' ';
+            f << "| ";
+            f << tableRows[i].GetCipher();
+            for (int j = tableRows[i].GetCipher().length(); j < 7; j++) f << ' ';
+            f << "| ";
+            f << tableRows[i].GetProjName();
+            for (int j = tableRows[i].GetProjName().length(); j < 101; j++) f << ' ';
+            f << "| ";
+            f << tableRows[i].GetSurname();
+            for (int j = tableRows[i].GetSurname().length(); j < 21; j++) f << ' ';
+            f << "| ";
+            f << tableRows[i].GetDateEnd();
+            for (int j = tableRows[i].GetDateEnd().length(); j < 12; j++) f << ' ';
+            f << "| ";
+            f << tableRows[i].GetVolume();
+            for (int j = to_string(tableRows[i].GetVolume()).length(); j < 6; j++) f << ' ';
+            f << "|\n";
+        }
+        f.close();*/
+        return (1);
+    }
+    public int ExpSmallTable(string fname, int from, int to)
+    {
+       /* ofstream f;
+        f.open(fname);
+        if (!f.is_open()) return 0;
+        f << "                                              ЖУРНАЛ УЧЕТА НОМЕРОВ ПРОЕКТНО-КОНСТРУКТОРСКОЙ ДОКУМЕНТАЦИИ\n\n";
+        f << "   НОМЕР       ДАТА      ШИФР                                            НАИМЕНОВАНИЕ ПРОЕКТА                                                ИСПОЛНИТЕЛЬ\n";
+        f << "  ЗАДАНИЯ  РЕГИСТРАЦИИ  ПРОЕКТА\n";
+        for (int i = from - 1; i < to; i++)
+        {
+            f << "| ";
+            f << tableRows[i].GetTaskNumber();
+            for (int j = tableRows[i].GetTaskNumber().length(); j < 8; j++) f << ' ';
+            f << "| ";
+            f << tableRows[i].GetDateReg();
+            for (int j = tableRows[i].GetDateReg().length(); j < 11; j++) f << ' ';
+            f << "| ";
+            f << tableRows[i].GetCipher();
+            for (int j = tableRows[i].GetCipher().length(); j < 7; j++) f << ' ';
+            f << "| ";
+            f << tableRows[i].GetProjName();
+            for (int j = tableRows[i].GetProjName().length(); j < 101; j++) f << ' ';
+            f << "| ";
+            f << tableRows[i].GetSurname();
+            for (int j = tableRows[i].GetSurname().length(); j < 21; j++) f << ' ';
+            f << "|\n";
+        }
+        f.close();*/
+        return (1);
+    }
+    private RowPKD[] tableRows = new RowPKD[1];
+    private int rowsNum;
+}
+
+
+
+
+
+ /*   public class TablePKD2
+    {
+        public void AddStr(RowPKD2 tableRow)
+        {
+            if (rowsNum > 0) ArrResize();
+            tableRows[rowsNum].taskNumber = tableRow.taskNumber;
+            rowsNum++;
+        }
+        public void ArrResize()
+        {
+            RowPKD[] tableRows2 = new RowPKD[rowsNum + 1];
+            for (int i = 0; i < rowsNum; i++) tableRows2[i] = (RowPKD)tableRows[i].Clone();
+            tableRows = tableRows2;
+        }
+        private RowPKD[] tableRows = new RowPKD[1];
+        private int rowsNum = 0;
+    }
+
+    public class RowPKD2
+    {
+        public RowPKD2()
+        {
+        }
+        public RowPKD2(string taskNumber)
+        {
+            this.taskNumber = taskNumber;
+        }
+        //public object Clone()
+        //{
+           // return new RowPKD2(taskNumber);
+        //}
+        public String taskNumber;
+    }*/
+
+
 
 
 

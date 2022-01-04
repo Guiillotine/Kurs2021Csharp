@@ -315,6 +315,7 @@ namespace Kurs2021Csharp
             this.Name = "AddProjForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Добавление проекта";
+            this.Load += new System.EventHandler(this.AddProjForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_in)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

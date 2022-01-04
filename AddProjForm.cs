@@ -25,7 +25,100 @@ namespace Kurs2021Csharp
 
         private void buttonOk_Click(object sender, EventArgs e)
         {
+			RowPKD row = new RowPKD(); //String login = "л"; int fmode = 1;
+			int f = 1;
+			if (this.taskNumber.Text != "") row.SetTaskNumber(this.taskNumber.Text);
+			else if (f == 1) { f = 0; MessageBox.Show("Введены не все данные", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
 
+			if (this.dateReg.Text != "  .  .") row.SetDateReg(this.dateReg.Text);
+			else if (f == 1) { f = 0; MessageBox.Show("Введены не все данные", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
+
+			if (this.cipher.Text != "  -") row.SetCipher(this.cipher.Text);
+			else if (f == 1) { f = 0; MessageBox.Show("Введены не все данные", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
+
+			if (this.projName.Text != "") row.SetProjName(this.projName.Text);
+			else if (f == 1) { f = 0; MessageBox.Show("Введены не все данные", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
+
+			if ((this.surname.Text == "") && (f == 1)) { f = 0; MessageBox.Show("Введены не все данные", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
+			if ((this.surname.Text != Globals.login) && (f == 1) && (Globals.fmode == 0)) { f = 0; MessageBox.Show("Укажите свою фамилию в поле \"Исполнитель\"", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+			else row.SetSurname(this.surname.Text);
+
+			if (this.dateEnd.Text == "  .  .") row.SetDateEnd("00.00.0000");
+			else row.SetDateEnd(this.dateEnd.Text);
+
+			if (this.volume.Text == "")  row.SetVolume(0);
+			else row.SetVolume(Convert.ToInt32(this.volume.Text)); 
+
+			if (f == 1)
+			{
+			Globals.tablePKD.AddStr(row);
+			row.Putfile(Globals.fnamePKD);
+			dataGridView_in.Rows.Add();
+			dataGridView_in.Rows[ix].Cells[0].Value = row.GetTaskNumber();
+			dataGridView_in.Rows[ix].Cells[1].Value = row.GetDateReg();
+			dataGridView_in.Rows[ix].Cells[2].Value = row.GetCipher();
+			dataGridView_in.Rows[ix].Cells[3].Value = row.GetProjName();
+			dataGridView_in.Rows[ix].Cells[4].Value = row.GetSurname();
+			if (row.GetDateEnd() == "00.00.0000") dataGridView_in.Rows[ix].Cells[5].Value = "     -------";
+			else dataGridView_in.Rows[ix].Cells[5].Value = row.GetDateEnd();
+			dataGridView_in.Rows[ix].Cells[6].Value = row.GetVolume().ToString();
+			ix++;
+			this.taskNumber.Text = "";
+			this.dateReg.Text = "";
+			this.cipher.Text = "";
+			this.projName.Text = "";
+			this.surname.Text = "";
+			this.dateEnd.Text = "";
+			this.volume.Text = "";
+			}
+		}
+		public int ix = 0;
+
+        private void AddProjForm_Load(object sender, EventArgs e)
+        {
+			ix = 0;
+			string path = AppContext.BaseDirectory + "/" + Globals.fnameLogin;
+			string str;
+			if(File.Exists(path))
+            {
+				FileStream f = new FileStream(path, FileMode.Open);
+				StreamReader stream = new StreamReader(path);
+				int k = 0;
+				while (stream.EndOfStream)
+				{
+					str = "";
+					str = stream.ReadLine();
+					//if (k > 0) this.surname.Items.AddRange(gcnew cli.array < System.Object ^  > (1) { gcnew String(str.c_str()) });
+					if (k > 0) this.surname.Items.AddRange(new object[] {str});
+					str = stream.ReadLine();
+					k++;
+				}
+				stream.Close();
+				f.Close();
+			}
+			else
+			{
+				MessageBox.Show("Не удалось открыть файл cо списком исполнителей для заполнения таблицы", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				this.Close();
+			}
+			
+	/*		if (!fmode)
+			{
+				this.dateEnd.Enabled = false;
+				this.volume.Enabled = false;
+				for (int i = 0; i < tableRegZd.GetRowsNum(); i++)
+				{
+					if (tableRegZd.GetTableRow(i).GetSurname() == login)
+					{
+						for (int j = 0; j < tablePKD.GetRowsNum(); j++)
+						{
+							if (tablePKD.GetTableRow(j).GetTaskNumber() == tableRegZd.GetTableRow(i).GetTaskNumber()) break;
+							if (j == tablePKD.GetRowsNum() - 1) this.taskNumber.Items.AddRange(gcnew cli.array < System.Object ^  > (1) { gcnew String(tableRegZd.GetTableRow(i).GetTaskNumber().c_str()) });
+						}
+					}
+				}
+			}*/
+			//else for (int i = 0; i < tableRegZd.GetRowsNum(); i++) this.taskNumber.Items.AddRange(gcnew cli.array < System.Object ^  > (1) { gcnew String(tableRegZd.GetTableRow(i).GetTaskNumber().c_str()) });
         }
     }
 }
