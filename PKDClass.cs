@@ -80,9 +80,10 @@ namespace Kurs2021Csharp
         }
         public void Putfile(string fnamePKD)
         {
-            string path = AppContext.BaseDirectory;//AppDomain.CurrentDomain.BaseDirectory;//Directory.GetCurrentDirectory();
+            string path = AppContext.BaseDirectory;
             FileStream f = new FileStream(path + "/" + fnamePKD, FileMode.Append);
-            StreamWriter stream = new StreamWriter(f);
+            //StreamWriter stream = new StreamWriter(f);
+            StreamWriter stream = new StreamWriter(f, Encoding.GetEncoding(1251));
             stream.WriteLine("{0}\n{1}\n{2}\n{3}\n{4}\n{5}\n{6}", taskNumber, dateReg, cipher, projName, surname, dateEnd, volume);
             stream.Close();
             f.Close();
@@ -104,8 +105,6 @@ namespace Kurs2021Csharp
         private int volume;
 
     }
-
-
 
     public class TablePKD
     {
@@ -148,32 +147,37 @@ namespace Kurs2021Csharp
         stream.Close();
         f.Close();
     }
-    public void Getfile(string fnamePKD)
+    public int Getfile(string fnamePKD)
     {
-        /*fstream f;
+        string path = AppContext.BaseDirectory + "/" + fnamePKD;
         string str;
-        f.open(fnamePKD, fstream::in | fstream::out | fstream::app);
-        if (!f.is_open()) return 0;
-        int i = 0;
-        RowPKD row;
-        while (!f.eof())
-        {
-            getline(f, str);
-            switch (i)
+            if (File.Exists(path))
             {
-                case 0: row.SetTaskNumber(str); break;
-                case 1: row.SetDateReg(str); break;
-                case 2: row.SetCipher(str); break;
-                case 3: row.SetProjName(str); break;
-                case 4: row.SetSurname(str); break;
-                case 5: row.SetDateEnd(str); break;
-                case 6: row.SetVolume(stoi(str)); AddStr(row);
+                FileStream f = new FileStream(path, FileMode.Open, FileAccess.Read);
+                StreamReader stream = new StreamReader(f, Encoding.GetEncoding(1251));
+                int i = 0;
+                RowPKD row = new RowPKD();
+                while (!stream.EndOfStream)
+                {
+                    str = stream.ReadLine();
+                    switch (i)
+                    {
+                        case 0: row.SetTaskNumber(str); break;
+                        case 1: row.SetDateReg(str); break;
+                        case 2: row.SetCipher(str); break;
+                        case 3: row.SetProjName(str); break;
+                        case 4: row.SetSurname(str); break;
+                        case 5: row.SetDateEnd(str); break;
+                        case 6: row.SetVolume(Convert.ToInt32(str)); AddStr(row); break;
+                    }
+                    i++;
+                    if (i == 7) i = 0;
+                }
+                stream.Close();
+                f.Close();
             }
-            i++;
-            if (i == 7) i = 0;
-        }
-        f.close();
-        return 1;*/
+        else return 0;
+        return 1;
     }
     public int ExpBigTable(string fname, int from, int to)
     {

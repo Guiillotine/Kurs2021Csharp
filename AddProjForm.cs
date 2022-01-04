@@ -18,7 +18,52 @@ namespace Kurs2021Csharp
             InitializeComponent();
         }
 
-        private void buttonBack_Click(object sender, EventArgs e)
+		private void AddProjForm_Load(object sender, EventArgs e)
+		{
+			ix = 0;
+			string path = AppContext.BaseDirectory + "/" + Globals.fnameLogin;
+			string str;
+			if (File.Exists(path))
+			{
+				FileStream f = new FileStream(path, FileMode.Open, FileAccess.Read);
+				StreamReader stream = new StreamReader(f, Encoding.GetEncoding(1251));
+				int k = 0;
+				while (!stream.EndOfStream)
+				{
+					str = stream.ReadLine();
+					if (k != 0) surname.Items.AddRange(new object[] { str });
+					str = stream.ReadLine();
+					k++;
+				}
+				stream.Close();
+				f.Close();
+			}
+			else
+			{
+				MessageBox.Show("Не удалось открыть файл cо списком исполнителей для заполнения таблицы", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				this.Close();
+			}
+
+			/*if (Globals.fmode == 0) 
+			{
+				this.dateEnd.Enabled = false;
+				this.volume.Enabled = false;
+				for (int i = 0; i < Globals.tableRegZd.GetRowsNum(); i++)
+				{
+					if (Globals.tableRegZd.GetTableRow(i).GetSurname() == login)
+					{
+						for (int j = 0; j < Globals.tablePKD.GetRowsNum(); j++)
+						{
+							if (Globals.tablePKD.GetTableRow(j).GetTaskNumber() == tableRegZd.GetTableRow(i).GetTaskNumber()) break;
+							if (j == Globals.tablePKD.GetRowsNum() - 1) this.taskNumber.Items.AddRange(gcnew cli.array < System.Object ^  > (1) { gcnew String(tableRegZd.GetTableRow(i).GetTaskNumber().c_str()) });
+						}
+					}
+				}
+			}*/
+			//else for (int i = 0; i < tableRegZd.GetRowsNum(); i++) this.taskNumber.Items.AddRange(gcnew cli.array < System.Object ^  > (1) { gcnew String(tableRegZd.GetTableRow(i).GetTaskNumber().c_str()) });
+		}
+
+		private void buttonBack_Click(object sender, EventArgs e)
         {
             this.Close();
         }
@@ -73,49 +118,5 @@ namespace Kurs2021Csharp
 			}
 		}
 		public int ix = 0;
-        private void AddProjForm_Load(object sender, EventArgs e)
-        {
-			ix = 0;
-			string path = AppContext.BaseDirectory + "/" + Globals.fnameLogin;
-			string str;
-			if(File.Exists(path))
-            {
-				FileStream f = new FileStream(path, FileMode.Open, FileAccess.Read);
-				StreamReader stream = new StreamReader(f, Encoding.GetEncoding(1251));
-				int k = 0;
-				while (!stream.EndOfStream)
-				{
-					str = stream.ReadLine();
-					if (k != 0) surname.Items.AddRange(new object[] { str });
-					str = stream.ReadLine();
-					k++;
-				}
-				stream.Close();
-				f.Close();
-			}
-			else
-			{
-				MessageBox.Show("Не удалось открыть файл cо списком исполнителей для заполнения таблицы", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-				this.Close();
-			}
-			
-	/*		if (!fmode)
-			{
-				this.dateEnd.Enabled = false;
-				this.volume.Enabled = false;
-				for (int i = 0; i < tableRegZd.GetRowsNum(); i++)
-				{
-					if (tableRegZd.GetTableRow(i).GetSurname() == login)
-					{
-						for (int j = 0; j < tablePKD.GetRowsNum(); j++)
-						{
-							if (tablePKD.GetTableRow(j).GetTaskNumber() == tableRegZd.GetTableRow(i).GetTaskNumber()) break;
-							if (j == tablePKD.GetRowsNum() - 1) this.taskNumber.Items.AddRange(gcnew cli.array < System.Object ^  > (1) { gcnew String(tableRegZd.GetTableRow(i).GetTaskNumber().c_str()) });
-						}
-					}
-				}
-			}*/
-			//else for (int i = 0; i < tableRegZd.GetRowsNum(); i++) this.taskNumber.Items.AddRange(gcnew cli.array < System.Object ^  > (1) { gcnew String(tableRegZd.GetTableRow(i).GetTaskNumber().c_str()) });
-        }
     }
 }

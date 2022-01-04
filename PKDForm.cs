@@ -19,13 +19,13 @@ namespace Kurs2021Csharp
 
         private void PKDForm_Load(object sender, EventArgs e)
         {
-            //if (!fmode) this->Text = L"Учет ПКД (Пользователь: " + gcnew String(login.c_str()) + ")";
-            //else this->Text = L"Учет ПКД (Режим расширенного доступа)";
-            //if (!fmode)
+            if (Globals.fmode == 0)
             {
-                //this.toolStripButtonCorrect.Visible = false;
-                //this.изменитьСтрокуToolStripMenuItem.Visible = false;
-            }            
+                this.Text = "Учет ПКД (Пользователь: " + Globals.login + ")";
+                this.toolStripButtonCorrect.Visible = false;
+                this.изменитьСтрокуToolStripMenuItem.Visible = false;
+            }
+            else this.Text = "Учет ПКД (Режим расширенного доступа)";       
         }
 
         private void toolStripButtonOpenPKD_Click(object sender, EventArgs e)
@@ -78,22 +78,22 @@ namespace Kurs2021Csharp
         }
         private void PKDForm_Activated(object sender, EventArgs e)
         {
-          /*  while (dataGridView1->Rows->Count != 0)
-                dataGridView1->Rows->Remove(dataGridView1->Rows[dataGridView1->Rows->Count - 1]);
-            for (int x = 0; x < tablePKD.GetRowsNum(); x++)
+            while (dataGridView1.Rows.Count != 0)
+                dataGridView1.Rows.Remove(dataGridView1.Rows[dataGridView1.Rows.Count - 1]);
+            for (int x = 0; x < Globals.tablePKD.GetRowsNum(); x++)
             {
-                dataGridView1->Rows->Add();
-                dataGridView1->Rows[x]->Cells[0]->Value = (x + 1).ToString();
-                dataGridView1->Rows[x]->Cells[1]->Value = gcnew String(tablePKD.GetTableRow(x).GetTaskNumber().c_str());
-                dataGridView1->Rows[x]->Cells[2]->Value = gcnew String(tablePKD.GetTableRow(x).GetDateReg().c_str());
-                dataGridView1->Rows[x]->Cells[3]->Value = gcnew String(tablePKD.GetTableRow(x).GetCipher().c_str());
-                dataGridView1->Rows[x]->Cells[4]->Value = gcnew String(tablePKD.GetTableRow(x).GetProjName().c_str());
-                dataGridView1->Rows[x]->Cells[5]->Value = gcnew String(tablePKD.GetTableRow(x).GetSurname().c_str());
-                if ((tablePKD.GetTableRow(x).GetDateEnd() == "00.00.0000") || tablePKD.GetTableRow(x).GetDateEnd() == "  .  .")
-                    dataGridView1->Rows[x]->Cells[6]->Value = "     -------";
-                else dataGridView1->Rows[x]->Cells[6]->Value = gcnew String(tablePKD.GetTableRow(x).GetDateEnd().c_str());
-                dataGridView1->Rows[x]->Cells[7]->Value = tablePKD.GetTableRow(x).GetVolume().ToString();
-            }*/
+                dataGridView1.Rows.Add();
+                dataGridView1.Rows[x].Cells[0].Value = (x + 1).ToString();
+                dataGridView1.Rows[x].Cells[1].Value = Globals.tablePKD.GetTableRow(x).GetTaskNumber();
+                dataGridView1.Rows[x].Cells[2].Value = Globals.tablePKD.GetTableRow(x).GetDateReg();
+                dataGridView1.Rows[x].Cells[3].Value = Globals.tablePKD.GetTableRow(x).GetCipher();
+                dataGridView1.Rows[x].Cells[4].Value = Globals.tablePKD.GetTableRow(x).GetProjName();
+                dataGridView1.Rows[x].Cells[5].Value = Globals.tablePKD.GetTableRow(x).GetSurname();
+                if ((Globals.tablePKD.GetTableRow(x).GetDateEnd() == "00.00.0000") || Globals.tablePKD.GetTableRow(x).GetDateEnd() == "  .  .")
+                    dataGridView1.Rows[x].Cells[6].Value = "     -------";
+                else dataGridView1.Rows[x].Cells[6].Value = Globals.tablePKD.GetTableRow(x).GetDateEnd();
+                dataGridView1.Rows[x].Cells[7].Value = Globals.tablePKD.GetTableRow(x).GetVolume().ToString();
+            }
         }
     }
 }
