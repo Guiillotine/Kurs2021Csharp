@@ -73,7 +73,6 @@ namespace Kurs2021Csharp
 			}
 		}
 		public int ix = 0;
-
         private void AddProjForm_Load(object sender, EventArgs e)
         {
 			ix = 0;
@@ -81,15 +80,13 @@ namespace Kurs2021Csharp
 			string str;
 			if(File.Exists(path))
             {
-				FileStream f = new FileStream(path, FileMode.Open);
-				StreamReader stream = new StreamReader(path);
+				FileStream f = new FileStream(path, FileMode.Open, FileAccess.Read);
+				StreamReader stream = new StreamReader(f, Encoding.GetEncoding(1251));
 				int k = 0;
-				while (stream.EndOfStream)
+				while (!stream.EndOfStream)
 				{
-					str = "";
 					str = stream.ReadLine();
-					//if (k > 0) this.surname.Items.AddRange(gcnew cli.array < System.Object ^  > (1) { gcnew String(str.c_str()) });
-					if (k > 0) this.surname.Items.AddRange(new object[] {str});
+					if (k != 0) surname.Items.AddRange(new object[] { str });
 					str = stream.ReadLine();
 					k++;
 				}
