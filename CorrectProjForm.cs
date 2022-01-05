@@ -153,5 +153,14 @@ namespace Kurs2021Csharp
 				this.volume.Enabled = false;
 			}
 		}
+
+        private void taskNumber_KeyPress(object sender, KeyPressEventArgs e)
+        {
+			e.Handled = true;
+		}
+        private void surname_KeyPress(object sender, KeyPressEventArgs e)
+        {
+			e.Handled = true;
+		}
     }
 }

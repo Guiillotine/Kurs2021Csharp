@@ -65,6 +65,7 @@ namespace Kurs2021Csharp
             this.surname.Name = "surname";
             this.surname.Size = new System.Drawing.Size(117, 21);
             this.surname.TabIndex = 115;
+            this.surname.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.surname_KeyPress);
             // 
             // sign
             // 
@@ -78,6 +79,7 @@ namespace Kurs2021Csharp
             this.sign.Size = new System.Drawing.Size(35, 21);
             this.sign.TabIndex = 114;
             this.sign.Text = "=";
+            this.sign.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.sign_KeyPress);
             // 
             // dateEnd
             // 

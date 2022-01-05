@@ -65,6 +65,7 @@ namespace Kurs2021Csharp
             this.taskNumber.Name = "taskNumber";
             this.taskNumber.Size = new System.Drawing.Size(61, 21);
             this.taskNumber.TabIndex = 119;
+            this.taskNumber.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.taskNumber_KeyPress);
             // 
             // surname
             // 
@@ -74,6 +75,7 @@ namespace Kurs2021Csharp
             this.surname.Name = "surname";
             this.surname.Size = new System.Drawing.Size(117, 21);
             this.surname.TabIndex = 118;
+            this.surname.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.surname_KeyPress);
             // 
             // label5
             // 

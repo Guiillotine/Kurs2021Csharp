@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace Kurs2021Csharp
 {
@@ -19,41 +20,33 @@ namespace Kurs2021Csharp
 
         private void buttonOk_Click(object sender, EventArgs e)
         {
-			int f = 1;
-			if (Globals.tableRegZd.Getfile(Globals.fnameRegZd) == 0) { f = 0; MessageBox.Show("Не удалось открыть файл с регистрацией заданий на проектирование", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error); }
-			if ((Globals.tablePKD.Getfile(Globals.fnamePKD) == 0) && (f == 1)) MessageBox.Show("Не удалось открыть файл с журналом учета ПКД", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-			PKDForm form1 = new PKDForm();
-            if (f == 1) form1.Show();
-			this.Hide();
-
-			/*
-            fstream file;
-			string password;
 			int f = 0;
-			file.open(fnameLogin, fstream::in);
-			if (!file.is_open()) MessageBox::Show("Не удалось открыть файл с логинами и паролями. Авторизация невозможна", "Ошибка", MessageBoxButtons::OK, MessageBoxIcon::Error);
-			else
+			String password;
+			String path = AppContext.BaseDirectory + "/" + Globals.fnameLogin;
+			if (File.Exists(path))
 			{
+				FileStream file = new FileStream(path, FileMode.Open, FileAccess.Read);
+				StreamReader stream = new StreamReader(file, Encoding.GetEncoding(1251));
 				int k = 0;
-				while (!file.eof())
+				while (!stream.EndOfStream)
 				{
-					file >> login;
-					if (this->TBLogin->Text == gcnew String(login.c_str()))
-					{ 
-						file >> password;
-						if (this->TBPassword->Text == gcnew String(password.c_str()))
+					Globals.login = stream.ReadLine();
+					if (this.TBLogin.Text == Globals.login)
+					{
+						password = stream.ReadLine();
+						if (this.TBPassword.Text == password)
 						{
 							f = 1;
-							if (k == 0) fmode = 1;
-							PKDForm^ form1 = gcnew PKDForm(); RegZdForm^ form2 = gcnew RegZdForm();
-							if (tablePKD.Getfile(fnamePKD) == 0) MessageBox::Show("Не удалось открыть файл с таблицей \"Учет ПКД\"", "Ошибка", MessageBoxButtons::OK, MessageBoxIcon::Error);
+							if (k == 0) Globals.fmode = 1;
+							PKDForm form1 = new PKDForm(); RegZdForm form2 = new RegZdForm();
+							if (Globals.tablePKD.Getfile(Globals.fnamePKD) == 0) MessageBox.Show("Не удалось открыть файл с таблицей \"Учет ПКД\"", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
 							else
-							{		
-								if (tableRegZd.Getfile(fnameRegZd) == 0) MessageBox::Show("Не удалось открыть файл с таблицей \"Регистрация заданий на проектирование\"", "Ошибка", MessageBoxButtons::OK, MessageBoxIcon::Error);
+							{
+								if (Globals.tableRegZd.Getfile(Globals.fnameRegZd) == 0) MessageBox.Show("Не удалось открыть файл с таблицей \"Регистрация заданий на проектирование\"", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
 								else
-								{ 
-									if (!fmode) form1->Show(); else form2->Show();
-									LoginForm::Hide();
+								{
+									if (Globals.fmode == 0) form1.Show(); else form2.Show();
+									this.Hide();
 									break;
 								}
 							}
@@ -61,13 +54,12 @@ namespace Kurs2021Csharp
 					}
 					k++;
 				}
-				if (!f) MessageBox::Show("Неверно указан логин или пароль", "Ошибка", MessageBoxButtons::OK, MessageBoxIcon::Error);
-			} */
-
-
-
-
-
+				if (f == 0) MessageBox.Show("Неверно указан логин или пароль", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
+			else
+			{
+				MessageBox.Show("Не удалось открыть файл с логинами и паролями. Авторизация невозможна", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
 
 		}
 	}

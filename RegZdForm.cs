@@ -21,8 +21,9 @@ namespace Kurs2021Csharp
             if (Globals.fmode == 0)
             {
                 this.Text = "Учет ПКД (Пользователь: " + Globals.login + ")";
+                this.toolStripButtonAdd.Visible = false;
                 this.toolStripButtonCorrect.Visible = false;
-                this.изменитьСтрокуToolStripMenuItem.Visible = false;
+                this.редактироватьToolStripMenuItem.Visible = false;
             }
             else this.Text = "Учет ПКД (Режим расширенного доступа)";
         }

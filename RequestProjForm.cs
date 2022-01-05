@@ -94,5 +94,14 @@ namespace Kurs2021Csharp
 			}
 			if (f == 0) MessageBox.Show("По вашему запросу результатов не найдено", "", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
         }
+
+        private void surname_KeyPress(object sender, KeyPressEventArgs e)
+        {
+			e.Handled = true;
+		}
+        private void sign_KeyPress(object sender, KeyPressEventArgs e)
+        {
+			e.Handled = true;
+		}
     }
 }
