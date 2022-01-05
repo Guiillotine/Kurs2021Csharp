@@ -92,5 +92,10 @@ namespace Kurs2021Csharp
                 dataGridView1.Rows[i].Cells[8].Value = Globals.tableRegZd.GetTableRow(i).GetNote();
             }
         }
+
+        private void RegZdForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

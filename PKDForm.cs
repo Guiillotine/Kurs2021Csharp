@@ -95,5 +95,10 @@ namespace Kurs2021Csharp
                 dataGridView1.Rows[x].Cells[7].Value = Globals.tablePKD.GetTableRow(x).GetVolume().ToString();
             }
         }
+
+        private void PKDForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

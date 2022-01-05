@@ -140,7 +140,7 @@ namespace Kurs2021Csharp
     public void Putfile(string fnamePKD)
     {
         string path = AppContext.BaseDirectory;
-        FileStream f = new FileStream(path + "/" + fnamePKD, FileMode.Append);
+        FileStream f = new FileStream(path + "/" + fnamePKD, FileMode.Create);
         StreamWriter stream = new StreamWriter(f, Encoding.GetEncoding(1251));
         for (int i = 0; i < GetRowsNum(); i++)
             stream.WriteLine("{0}\n{1}\n{2}\n{3}\n{4}\n{5}\n{6}", tableRows[i].GetTaskNumber(), tableRows[i].GetDateReg(), tableRows[i].GetCipher(), tableRows[i].GetProjName(), tableRows[i].GetSurname(), tableRows[i].GetDateEnd(), tableRows[i].GetVolume());

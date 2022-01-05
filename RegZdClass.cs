@@ -138,7 +138,7 @@ namespace Kurs2021Csharp
         public void Putfile(string fnameRegZd)
         {
             string path = AppContext.BaseDirectory;
-            FileStream f = new FileStream(path + "/" + fnameRegZd, FileMode.Append);
+            FileStream f = new FileStream(path + "/" + fnameRegZd, FileMode.Create);
             StreamWriter stream = new StreamWriter(f, Encoding.GetEncoding(1251));
             for (int i = 0; i < GetRowsNum(); i++)
                 stream.WriteLine("{0}\n{1}\n{2}\n{3}\n{4}\n{5}\n{6}\n{7}", tableRows[i].GetTaskNumber(), tableRows[i].GetDate(), tableRows[i].GetCustomer(), tableRows[i].GetTask(), tableRows[i].GetProjNumber(), tableRows[i].GetSurname(), tableRows[i].GetStatus(), tableRows[i].GetNote());

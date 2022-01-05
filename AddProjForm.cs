@@ -44,23 +44,23 @@ namespace Kurs2021Csharp
 				this.Close();
 			}
 
-			/*if (Globals.fmode == 0) 
+			if (Globals.fmode == 0) 
 			{
 				this.dateEnd.Enabled = false;
 				this.volume.Enabled = false;
 				for (int i = 0; i < Globals.tableRegZd.GetRowsNum(); i++)
 				{
-					if (Globals.tableRegZd.GetTableRow(i).GetSurname() == login)
+					if (Globals.tableRegZd.GetTableRow(i).GetSurname() == Globals.login)
 					{
 						for (int j = 0; j < Globals.tablePKD.GetRowsNum(); j++)
 						{
-							if (Globals.tablePKD.GetTableRow(j).GetTaskNumber() == tableRegZd.GetTableRow(i).GetTaskNumber()) break;
-							if (j == Globals.tablePKD.GetRowsNum() - 1) this.taskNumber.Items.AddRange(gcnew cli.array < System.Object ^  > (1) { gcnew String(tableRegZd.GetTableRow(i).GetTaskNumber().c_str()) });
+							if (Globals.tablePKD.GetTableRow(j).GetTaskNumber() == Globals.tableRegZd.GetTableRow(i).GetTaskNumber()) break;
+							if (j == Globals.tablePKD.GetRowsNum() - 1) taskNumber.Items.AddRange(new object[] { Globals.tableRegZd.GetTableRow(i).GetTaskNumber() });
 						}
 					}
 				}
-			}*/
-			//else for (int i = 0; i < tableRegZd.GetRowsNum(); i++) this.taskNumber.Items.AddRange(gcnew cli.array < System.Object ^  > (1) { gcnew String(tableRegZd.GetTableRow(i).GetTaskNumber().c_str()) });
+			}
+			else for (int i = 0; i < Globals.tableRegZd.GetRowsNum(); i++) taskNumber.Items.AddRange(new object[] { Globals.tableRegZd.GetTableRow(i).GetTaskNumber() }); 
 		}
 
 		private void buttonBack_Click(object sender, EventArgs e)

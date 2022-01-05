@@ -30,7 +30,7 @@ namespace Kurs2021Csharp
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PKDForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripButtonOpenPKD = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonOpenZd = new System.Windows.Forms.ToolStripButton();
@@ -176,14 +176,14 @@ namespace Kurs2021Csharp
             // добавитьСтрокуToolStripMenuItem
             // 
             this.добавитьСтрокуToolStripMenuItem.Name = "добавитьСтрокуToolStripMenuItem";
-            this.добавитьСтрокуToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.добавитьСтрокуToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
             this.добавитьСтрокуToolStripMenuItem.Text = "Добавить строку";
             this.добавитьСтрокуToolStripMenuItem.Click += new System.EventHandler(this.toolStripButtonAdd_Click);
             // 
             // изменитьСтрокуToolStripMenuItem
             // 
             this.изменитьСтрокуToolStripMenuItem.Name = "изменитьСтрокуToolStripMenuItem";
-            this.изменитьСтрокуToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.изменитьСтрокуToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
             this.изменитьСтрокуToolStripMenuItem.Text = "Изменить строку";
             this.изменитьСтрокуToolStripMenuItem.Click += new System.EventHandler(this.toolStripButtonCorrect_Click);
             // 
@@ -248,9 +248,9 @@ namespace Kurs2021Csharp
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.AllowUserToResizeColumns = false;
             this.dataGridView1.AllowUserToResizeRows = false;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.Black;
-            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
             this.dataGridView1.BackgroundColor = System.Drawing.Color.Honeydew;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -348,6 +348,7 @@ namespace Kurs2021Csharp
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Учет ПКД";
             this.Activated += new System.EventHandler(this.PKDForm_Activated);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.PKDForm_FormClosed);
             this.Load += new System.EventHandler(this.PKDForm_Load);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();

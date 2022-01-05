@@ -102,6 +102,7 @@ namespace Kurs2021Csharp
             this.number.Size = new System.Drawing.Size(42, 20);
             this.number.TabIndex = 118;
             this.number.ValidatingType = typeof(int);
+            this.number.TextChanged += new System.EventHandler(this.number_TextChanged);
             // 
             // label10
             // 
@@ -266,6 +267,7 @@ namespace Kurs2021Csharp
             this.button_in_ok.TabIndex = 107;
             this.button_in_ok.Text = "Ок";
             this.button_in_ok.UseVisualStyleBackColor = true;
+            this.button_in_ok.Click += new System.EventHandler(this.button_in_ok_Click);
             // 
             // label6
             // 
@@ -360,6 +362,7 @@ namespace Kurs2021Csharp
             this.Name = "CorrectZdForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Редактирование заданий";
+            this.Load += new System.EventHandler(this.CorrectZdForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
