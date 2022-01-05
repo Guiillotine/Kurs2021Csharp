@@ -76,6 +76,7 @@ namespace Kurs2021Csharp
             this.buttonOk.TabIndex = 82;
             this.buttonOk.Text = "Ок";
             this.buttonOk.UseVisualStyleBackColor = true;
+            this.buttonOk.Click += new System.EventHandler(this.buttonOk_Click);
             // 
             // label4
             // 
@@ -114,7 +115,7 @@ namespace Kurs2021Csharp
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 14);
+            this.label1.Location = new System.Drawing.Point(12, 23);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(199, 13);
             this.label1.TabIndex = 77;
@@ -137,6 +138,7 @@ namespace Kurs2021Csharp
             this.Name = "Exp1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Экспорт журнала";
+            this.Load += new System.EventHandler(this.Exp1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

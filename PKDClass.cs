@@ -82,7 +82,6 @@ namespace Kurs2021Csharp
         {
             string path = AppContext.BaseDirectory;
             FileStream f = new FileStream(path + "/" + fnamePKD, FileMode.Append);
-            //StreamWriter stream = new StreamWriter(f);
             StreamWriter stream = new StreamWriter(f, Encoding.GetEncoding(1251));
             stream.WriteLine("{0}\n{1}\n{2}\n{3}\n{4}\n{5}\n{6}", taskNumber, dateReg, cipher, projName, surname, dateEnd, volume);
             stream.Close();
@@ -116,7 +115,6 @@ namespace Kurs2021Csharp
     {
         if (rowsNum > 0) ArrResize();
         tableRows[rowsNum] = (RowPKD)tableRow.Clone();
-        //tableRows[rowsNum] = tableRow;
         rowsNum++;
     }
     public void EditStr(int numberStr, RowPKD tableRow)
@@ -179,72 +177,72 @@ namespace Kurs2021Csharp
         else return 0;
         return 1;
     }
-    public int ExpBigTable(string fname, int from, int to)
+    public void ExpBigTable(string fname, int from, int to)
     {
-        /*ofstream f;
-        f.open(fname);
-        if (!f.is_open()) return 0;
-        f << "                                                           ЖУРНАЛ УЧЕТА ВЫПОЛНЕННОЙ ПРОЕКТНО-КОНСТРУКТОРСКОЙ ДОКУМЕНТАЦИИ\n\n";
-        f << "   НОМЕР       ДАТА      ШИФР                                            НАИМЕНОВАНИЕ ПРОЕКТА                                                ИСПОЛНИТЕЛЬ      ДАТА ЗАВЕРШЕНИЯ ОБЪЕМ\n";
-        f << "  ЗАДАНИЯ  РЕГИСТРАЦИИ  ПРОЕКТА                                                                                                                                   ПРОЕКТА   (в  л.А4)\n";
+        string path = AppContext.BaseDirectory;
+        FileStream f = new FileStream(path + "/" + fname, FileMode.Create);
+        StreamWriter stream = new StreamWriter(f, Encoding.GetEncoding(1251));
+        stream.Write("                                                           ЖУРНАЛ УЧЕТА ВЫПОЛНЕННОЙ ПРОЕКТНО-КОНСТРУКТОРСКОЙ ДОКУМЕНТАЦИИ\n\n");
+        stream.Write("   НОМЕР       ДАТА      ШИФР                                            НАИМЕНОВАНИЕ ПРОЕКТА                                                ИСПОЛНИТЕЛЬ      ДАТА ЗАВЕРШЕНИЯ ОБЪЕМ\n");
+        stream.Write("  ЗАДАНИЯ  РЕГИСТРАЦИИ  ПРОЕКТА                                                                                                                                   ПРОЕКТА   (в  л.А4)\n");
         for (int i = from - 1; i < to; i++)
         {
             if ((tableRows[i].GetVolume() == 0) || (tableRows[i].GetDateEnd() == "00.00.0000")) continue;
-            f << "| ";
-            f << tableRows[i].GetTaskNumber();
-            for (int j = tableRows[i].GetTaskNumber().length(); j < 8; j++) f << ' ';
-            f << "| ";
-            f << tableRows[i].GetDateReg();
-            for (int j = tableRows[i].GetDateReg().length(); j < 11; j++) f << ' ';
-            f << "| ";
-            f << tableRows[i].GetCipher();
-            for (int j = tableRows[i].GetCipher().length(); j < 7; j++) f << ' ';
-            f << "| ";
-            f << tableRows[i].GetProjName();
-            for (int j = tableRows[i].GetProjName().length(); j < 101; j++) f << ' ';
-            f << "| ";
-            f << tableRows[i].GetSurname();
-            for (int j = tableRows[i].GetSurname().length(); j < 21; j++) f << ' ';
-            f << "| ";
-            f << tableRows[i].GetDateEnd();
-            for (int j = tableRows[i].GetDateEnd().length(); j < 12; j++) f << ' ';
-            f << "| ";
-            f << tableRows[i].GetVolume();
-            for (int j = to_string(tableRows[i].GetVolume()).length(); j < 6; j++) f << ' ';
-            f << "|\n";
+            stream.Write("| ");
+            stream.Write("{0}",tableRows[i].GetTaskNumber());
+            for (int j = tableRows[i].GetTaskNumber().Length; j < 8; j++) stream.Write(" ");
+            stream.Write("| ");
+            stream.Write("{0}",tableRows[i].GetDateReg());
+            for (int j = tableRows[i].GetDateReg().Length; j < 11; j++) stream.Write(" ");
+            stream.Write("| ");
+            stream.Write("{0}",tableRows[i].GetCipher());
+            for (int j = tableRows[i].GetCipher().Length; j < 7; j++) stream.Write(" ");
+            stream.Write("| ");
+            stream.Write("{0}",tableRows[i].GetProjName());
+            for (int j = tableRows[i].GetProjName().Length; j < 101; j++) stream.Write(" ");
+            stream.Write("| ");
+            stream.Write("{0}",tableRows[i].GetSurname());
+            for (int j = tableRows[i].GetSurname().Length; j < 21; j++) stream.Write(" ");
+            stream.Write("| ");
+            stream.Write("{0}",tableRows[i].GetDateEnd());
+            for (int j = tableRows[i].GetDateEnd().Length; j < 12; j++) stream.Write(" ");
+            stream.Write("| ");
+            stream.Write("{0}",tableRows[i].GetVolume());
+            for (int j = Convert.ToString(tableRows[i].GetVolume()).Length; j < 6; j++) stream.Write(" ");
+            stream.Write("|\n");
         }
-        f.close();*/
-        return (1);
+            stream.Close();
+            f.Close();
     }
-    public int ExpSmallTable(string fname, int from, int to)
+    public void ExpSmallTable(string fname, int from, int to)
     {
-       /* ofstream f;
-        f.open(fname);
-        if (!f.is_open()) return 0;
-        f << "                                              ЖУРНАЛ УЧЕТА НОМЕРОВ ПРОЕКТНО-КОНСТРУКТОРСКОЙ ДОКУМЕНТАЦИИ\n\n";
-        f << "   НОМЕР       ДАТА      ШИФР                                            НАИМЕНОВАНИЕ ПРОЕКТА                                                ИСПОЛНИТЕЛЬ\n";
-        f << "  ЗАДАНИЯ  РЕГИСТРАЦИИ  ПРОЕКТА\n";
-        for (int i = from - 1; i < to; i++)
-        {
-            f << "| ";
-            f << tableRows[i].GetTaskNumber();
-            for (int j = tableRows[i].GetTaskNumber().length(); j < 8; j++) f << ' ';
-            f << "| ";
-            f << tableRows[i].GetDateReg();
-            for (int j = tableRows[i].GetDateReg().length(); j < 11; j++) f << ' ';
-            f << "| ";
-            f << tableRows[i].GetCipher();
-            for (int j = tableRows[i].GetCipher().length(); j < 7; j++) f << ' ';
-            f << "| ";
-            f << tableRows[i].GetProjName();
-            for (int j = tableRows[i].GetProjName().length(); j < 101; j++) f << ' ';
-            f << "| ";
-            f << tableRows[i].GetSurname();
-            for (int j = tableRows[i].GetSurname().length(); j < 21; j++) f << ' ';
-            f << "|\n";
-        }
-        f.close();*/
-        return (1);
+            string path = AppContext.BaseDirectory;
+            FileStream f = new FileStream(path + "/" + fname, FileMode.Create);
+            StreamWriter stream = new StreamWriter(f, Encoding.GetEncoding(1251));
+            stream.Write("                                              ЖУРНАЛ УЧЕТА НОМЕРОВ ПРОЕКТНО-КОНСТРУКТОРСКОЙ ДОКУМЕНТАЦИИ\n\n");
+            stream.Write("   НОМЕР       ДАТА      ШИФР                                            НАИМЕНОВАНИЕ ПРОЕКТА                                                ИСПОЛНИТЕЛЬ\n");
+            stream.Write("  ЗАДАНИЯ  РЕГИСТРАЦИИ  ПРОЕКТА\n");
+            for (int i = from - 1; i < to; i++)
+            {
+                stream.Write("| ");
+                stream.Write("{0}", tableRows[i].GetTaskNumber());
+                for (int j = tableRows[i].GetTaskNumber().Length; j < 8; j++) stream.Write(" ");
+                stream.Write("| ");
+                stream.Write("{0}",tableRows[i].GetDateReg());
+                for (int j = tableRows[i].GetDateReg().Length; j < 11; j++) stream.Write(" ");
+                stream.Write("| ");
+                stream.Write("{0}", tableRows[i].GetCipher());
+                for (int j = tableRows[i].GetCipher().Length; j < 7; j++) stream.Write(" ");
+                stream.Write("| ");
+                stream.Write("{0}", tableRows[i].GetProjName());
+                for (int j = tableRows[i].GetProjName().Length; j < 101; j++) stream.Write(" ");
+                stream.Write("| ");
+                stream.Write("{0}", tableRows[i].GetSurname());
+                for (int j = tableRows[i].GetSurname().Length; j < 21; j++) stream.Write(" ");
+                stream.Write("|\n");
+            }
+            stream.Close();
+            f.Close();
     }
     private RowPKD[] tableRows = new RowPKD[1];
     private int rowsNum;

@@ -232,6 +232,7 @@ namespace Kurs2021Csharp
             this.button_in_ok.TabIndex = 103;
             this.button_in_ok.Text = "Ок";
             this.button_in_ok.UseVisualStyleBackColor = true;
+            this.button_in_ok.Click += new System.EventHandler(this.button_in_ok_Click);
             // 
             // label6
             // 
@@ -314,6 +315,7 @@ namespace Kurs2021Csharp
             this.Name = "RequestProjForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Составление запроса по проектам";
+            this.Load += new System.EventHandler(this.RequestProjForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

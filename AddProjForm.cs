@@ -70,7 +70,7 @@ namespace Kurs2021Csharp
 
         private void buttonOk_Click(object sender, EventArgs e)
         {
-			RowPKD row = new RowPKD(); //String login = "л"; int fmode = 1;
+			RowPKD row = new RowPKD();
 			int f = 1;
 			if (this.taskNumber.Text != "") row.SetTaskNumber(this.taskNumber.Text);
 			else if (f == 1) { f = 0; MessageBox.Show("Введены не все данные", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Warning); }

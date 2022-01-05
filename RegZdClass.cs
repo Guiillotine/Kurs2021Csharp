@@ -178,44 +178,44 @@ namespace Kurs2021Csharp
             else return 0;
             return 1;
         }
-        public int ExpTable(string fname, int from, int to)
+        public void ExpTable(string fname, int from, int to)
         {
-           /* ofstream f;
-            f.open(fname);
-            if (!f.is_open()) return 0;
-            f << "                                                                                          ЖУРНАЛ РЕГИСТРАЦИИ ЗАДАНИЙ НА ПРОЕКТИРОВАНИЕ\n\n";
-            f << "  НОМЕР      ДАТА ВЫД.     НАИМЕНОВАНИЕ                                             СОДЕРЖАНИЕ ЗАДАНИЯ                                            НОМЕР          ФАМИЛИЯ              СТАТУС                    ПРИМЕЧАНИЕ\n";
-            f << " ЗАДАНИЯ     ЗАДАНИЯ        ЗАКАЗЧИКА                                                                                                            ПРОЕКТА  ИНЖЕНЕРА-КОНСТРУКТОРА\n";
+            string path = AppContext.BaseDirectory;
+            FileStream f = new FileStream(path + "/" + fname, FileMode.Create);
+            StreamWriter stream = new StreamWriter(f, Encoding.GetEncoding(1251));
+            stream.Write("                                                                                          ЖУРНАЛ РЕГИСТРАЦИИ ЗАДАНИЙ НА ПРОЕКТИРОВАНИЕ\n\n");
+            stream.Write("  НОМЕР      ДАТА ВЫД.     НАИМЕНОВАНИЕ                                             СОДЕРЖАНИЕ ЗАДАНИЯ                                            НОМЕР          ФАМИЛИЯ              СТАТУС                    ПРИМЕЧАНИЕ\n");
+            stream.Write(" ЗАДАНИЯ     ЗАДАНИЯ        ЗАКАЗЧИКА                                                                                                            ПРОЕКТА  ИНЖЕНЕРА-КОНСТРУКТОРА\n");
             for (int i = from - 1; i < to; i++)
             {
-                f << "| ";
-                f << tableRows[i].GetTaskNumber();
-                for (int j = tableRows[i].GetTaskNumber().length(); j < 8; j++) f << ' ';
-                f << "| ";
-                f << tableRows[i].GetDate();
-                for (int j = tableRows[i].GetDate().length(); j < 11; j++) f << ' ';
-                f << "| ";
-                f << tableRows[i].GetCustomer();
-                for (int j = tableRows[i].GetCustomer().length(); j < 16; j++) f << ' ';
-                f << "| ";
-                f << tableRows[i].GetTask();
-                for (int j = tableRows[i].GetTask().length(); j < 101; j++) f << ' ';
-                f << "| ";
-                f << tableRows[i].GetProjNumber();
-                for (int j = tableRows[i].GetProjNumber().length(); j < 7; j++) f << ' ';
-                f << "| ";
-                f << tableRows[i].GetSurname();
-                for (int j = tableRows[i].GetSurname().length(); j < 21; j++) f << ' ';
-                f << "| ";
-                f << tableRows[i].GetStatus();
-                for (int j = tableRows[i].GetStatus().length(); j < 16; j++) f << ' ';
-                f << "| ";
-                f << tableRows[i].GetNote();
-                for (int j = tableRows[i].GetNote().length(); j < 36; j++) f << ' ';
-                f << "|\n";
+                stream.Write("| ");
+                stream.Write("{0}",tableRows[i].GetTaskNumber());
+                for (int j = tableRows[i].GetTaskNumber().Length; j < 8; j++) stream.Write(" ");
+                stream.Write("| ");
+                stream.Write("{0}",tableRows[i].GetDate());
+                for (int j = tableRows[i].GetDate().Length; j < 11; j++) stream.Write(" ");
+                stream.Write("| ");
+                stream.Write("{0}", tableRows[i].GetCustomer());
+                for (int j = tableRows[i].GetCustomer().Length; j < 16; j++) stream.Write(" ");
+                stream.Write("| ");
+                stream.Write("{0}", tableRows[i].GetTask());
+                for (int j = tableRows[i].GetTask().Length; j < 101; j++) stream.Write(" ");
+                stream.Write("| ");
+                stream.Write("{0}", tableRows[i].GetProjNumber());
+                for (int j = tableRows[i].GetProjNumber().Length; j < 7; j++) stream.Write(" ");
+                stream.Write("| ");
+                stream.Write("{0}", tableRows[i].GetSurname());
+                for (int j = tableRows[i].GetSurname().Length; j < 21; j++) stream.Write(" ");
+                stream.Write("| ");
+                stream.Write("{0}", tableRows[i].GetStatus());
+                for (int j = tableRows[i].GetStatus().Length; j < 16; j++) stream.Write(" ");
+                stream.Write("| ");
+                stream.Write("{0}", tableRows[i].GetNote());
+                for (int j = tableRows[i].GetNote().Length; j < 36; j++) stream.Write(" ");
+                stream.Write("|\n");
             }
-            f.close();*/
-            return (1);
+            stream.Close();
+            f.Close();
         }
         private RowRegZd[] tableRows = new RowRegZd[1];
         private int rowsNum;

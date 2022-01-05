@@ -255,6 +255,7 @@ namespace Kurs2021Csharp
             this.button_ok_req.TabIndex = 101;
             this.button_ok_req.Text = "Ок";
             this.button_ok_req.UseVisualStyleBackColor = true;
+            this.button_ok_req.Click += new System.EventHandler(this.button_ok_req_Click);
             // 
             // button_back_req
             // 
@@ -291,6 +292,7 @@ namespace Kurs2021Csharp
             this.Name = "RequestZdForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Составление запроса по заданиям";
+            this.Load += new System.EventHandler(this.RequestZdForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
