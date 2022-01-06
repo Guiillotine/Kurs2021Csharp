@@ -7,7 +7,7 @@ using System.IO;
 
 namespace Kurs2021Csharp
 {
-    public class RowRegZd
+    public class RowRegZd : Row
     {
         public RowRegZd()
         {
@@ -22,14 +22,6 @@ namespace Kurs2021Csharp
             this.surname = surname;
             this.status = status;
             this.note = note;
-        }
-        public void SetTaskNumber(String taskNumber)
-        {
-            this.taskNumber = taskNumber;
-        }
-        public String GetTaskNumber()
-        {
-            return (taskNumber);
         }
         public void SetDate(String date)
         {
@@ -63,14 +55,6 @@ namespace Kurs2021Csharp
         {
             return (projNumber);
         }
-        public void SetSurname(string surname)
-        {
-            this.surname = surname;
-        }
-        public string GetSurname()
-        {
-            return (surname);
-        }
         public void SetStatus(String status)
         {
             this.status = status;
@@ -87,7 +71,7 @@ namespace Kurs2021Csharp
         {
             return (note);
         }
-        public void Putfile(String fnameRegZd)
+        public override void Putfile(String fnameRegZd)
         {
             string path = AppContext.BaseDirectory;
             FileStream f = new FileStream(path + "/" + fnameRegZd, FileMode.Append);
@@ -100,16 +84,14 @@ namespace Kurs2021Csharp
         {
             return new RowRegZd(taskNumber, date, customer, task, projNumber, surname, status, note);
         }
-        private String taskNumber;
         private String date;
         private String customer;
         private String task;
         private String projNumber;
-        private String surname;
         private String status;
         private String note;
     }
-    public class TableRegZd
+    public class TableRegZd : Table
     {
         public void AddStr(RowRegZd tableRow)
         {
@@ -121,21 +103,18 @@ namespace Kurs2021Csharp
         {
             tableRows[numberStr - 1] = tableRow;
         }
-        public void ArrResize()
+        public override void ArrResize()
         {
             RowRegZd[] tableRows2 = new RowRegZd[rowsNum + 1];
             for (int i = 0; i < rowsNum; i++) tableRows2[i] = (RowRegZd)tableRows[i].Clone();
             tableRows = tableRows2;
         }
-        public int GetRowsNum()
-        {
-            return (rowsNum);
-        }
+
         public RowRegZd GetTableRow(int index)
         {
             return tableRows[index];
         }
-        public void Putfile(string fnameRegZd)
+        public override void Putfile(string fnameRegZd)
         {
             string path = AppContext.BaseDirectory;
             FileStream f = new FileStream(path + "/" + fnameRegZd, FileMode.Create);
@@ -145,7 +124,7 @@ namespace Kurs2021Csharp
             stream.Close();
             f.Close();
         }
-        public int Getfile(string fnameRegZd)
+        public override int Getfile(string fnameRegZd)
         {
             string path = AppContext.BaseDirectory + "/" + fnameRegZd;
             string str;
@@ -218,6 +197,5 @@ namespace Kurs2021Csharp
             f.Close();
         }
         private RowRegZd[] tableRows = new RowRegZd[1];
-        private int rowsNum;
     }
 }

@@ -294,6 +294,7 @@ namespace Kurs2021Csharp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(1087, 423);
             this.Controls.Add(this.surname);
             this.Controls.Add(this.sign);
@@ -314,6 +315,7 @@ namespace Kurs2021Csharp
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button_in_back);
+            this.MaximizeBox = false;
             this.Name = "RequestProjForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Составление запроса по проектам";

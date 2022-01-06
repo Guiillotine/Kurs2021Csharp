@@ -192,6 +192,7 @@ namespace Kurs2021Csharp
             this.найтиToolStripMenuItem.Name = "найтиToolStripMenuItem";
             this.найтиToolStripMenuItem.Size = new System.Drawing.Size(62, 20);
             this.найтиToolStripMenuItem.Text = "Найти...";
+            this.найтиToolStripMenuItem.Click += new System.EventHandler(this.toolStripButtonRequest_Click);
             // 
             // экспортToolStripMenuItem
             // 

@@ -19,8 +19,8 @@ namespace Kurs2021Csharp
         }
         private void RequestZdForm_Load(object sender, EventArgs e)
         {
-			string path = AppContext.BaseDirectory + "/" + Globals.fnameLogin;
-			string str;
+			String path = AppContext.BaseDirectory + "/" + Globals.fnameLogin;
+			String str;
 			if (File.Exists(path))
 			{
 				FileStream f = new FileStream(path, FileMode.Open, FileAccess.Read);
@@ -32,8 +32,9 @@ namespace Kurs2021Csharp
 					if (k != 0) surname.Items.AddRange(new object[] { str });
 					str = stream.ReadLine();
 					k++;
-				}
-				surname.Items.AddRange(new object[] { "" });
+                }
+                surname.Items.AddRange(new object[] { "" });
+				status.Items.AddRange(new object[] { "" });
 				stream.Close();
 				f.Close();
 			}

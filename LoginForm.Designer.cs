@@ -71,6 +71,7 @@ namespace Kurs2021Csharp
             this.TBPassword.PasswordChar = '*';
             this.TBPassword.Size = new System.Drawing.Size(134, 20);
             this.TBPassword.TabIndex = 6;
+            this.TBPassword.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TBPassword_KeyDown);
             // 
             // TBLogin
             // 
@@ -78,17 +79,20 @@ namespace Kurs2021Csharp
             this.TBLogin.Name = "TBLogin";
             this.TBLogin.Size = new System.Drawing.Size(134, 20);
             this.TBLogin.TabIndex = 5;
+            this.TBLogin.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TBPassword_KeyDown);
             // 
             // LoginForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(207, 176);
             this.Controls.Add(this.buttonOk);
             this.Controls.Add(this.labelPassw);
             this.Controls.Add(this.labelLog);
             this.Controls.Add(this.TBPassword);
             this.Controls.Add(this.TBLogin);
+            this.MaximizeBox = false;
             this.Name = "LoginForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Авторизация";

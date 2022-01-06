@@ -62,5 +62,14 @@ namespace Kurs2021Csharp
 			}
 
 		}
-	}
+
+        private void TBPassword_KeyDown(object sender, KeyEventArgs e)
+        {
+			if (e.KeyCode == Keys.Enter)
+			{
+				e.SuppressKeyPress = true;
+				buttonOk_Click(sender, e);
+			}
+		}
+    }
 }

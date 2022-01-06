@@ -7,12 +7,12 @@ using System.IO;
 
 namespace Kurs2021Csharp
 {
-    public class RowPKD
+    public class RowPKD : Row
     {
         public RowPKD()
         {
         }
-        public RowPKD(string taskNumber, string dateReg, string cipher, string projName, string surname, string dateEnd, int volume)
+        public RowPKD(String taskNumber, String dateReg, String cipher, String projName, String surname, String dateEnd, int volume)
         {
             this.taskNumber = taskNumber;
             this.dateReg = dateReg;
@@ -22,51 +22,35 @@ namespace Kurs2021Csharp
             this.dateEnd = dateEnd;
             this.volume = volume;
         }
-        public void SetTaskNumber(string taskNumber)
-        {
-            this.taskNumber = taskNumber;
-        }
-        public string GetTaskNumber()
-        {
-            return(taskNumber);
-        }
-        public void SetDateReg(string dateReg)
+        public void SetDateReg(String dateReg)
         {
             this.dateReg = dateReg;
         }
-        public string GetDateReg()
+        public String GetDateReg()
         {
             return (dateReg);
         }
-        public void SetCipher(string cipher)
+        public void SetCipher(String cipher)
         {
             this.cipher = cipher;
         }
-        public string GetCipher()
+        public String GetCipher()
         {
             return (cipher);
         }
-        public void SetProjName(string projName)
+        public void SetProjName(String projName)
         {
             this.projName = projName;
         }
-        public string GetProjName()
+        public String GetProjName()
         {
             return (projName);
         }
-        public void SetSurname(string surname)
-         {
-             this.surname = surname;
-         }
-        public string GetSurname()
-         {
-             return(surname);
-         }
-        public void SetDateEnd(string dateEnd)
+        public void SetDateEnd(String dateEnd)
         {
             this.dateEnd = dateEnd;
         }
-        public string GetDateEnd()
+        public String GetDateEnd()
         {
             return (dateEnd);
         }
@@ -78,9 +62,9 @@ namespace Kurs2021Csharp
         {
             return (volume);
         }
-        public void Putfile(string fnamePKD)
+        public override void Putfile(String fnamePKD)
         {
-            string path = AppContext.BaseDirectory;
+            String path = AppContext.BaseDirectory;
             FileStream f = new FileStream(path + "/" + fnamePKD, FileMode.Append);
             StreamWriter stream = new StreamWriter(f, Encoding.GetEncoding(1251));
             stream.WriteLine("{0}\n{1}\n{2}\n{3}\n{4}\n{5}\n{6}", taskNumber, dateReg, cipher, projName, surname, dateEnd, volume);
@@ -91,26 +75,15 @@ namespace Kurs2021Csharp
         {
             return new RowPKD(taskNumber, dateReg, cipher, projName, surname, dateEnd, volume);
         }
-
-        private String taskNumber;
-
         private String dateReg;
         private String cipher;
         private String projName;
-
-        private String surname;
-
         private String dateEnd;
         private int volume;
-
     }
 
-    public class TablePKD
+    public class TablePKD : Table
     {
-    public TablePKD()
-    {
-        rowsNum = 0;
-    }
     public void AddStr(RowPKD tableRow)
     {
         if (rowsNum > 0) ArrResize();
@@ -121,23 +94,19 @@ namespace Kurs2021Csharp
     {
         tableRows[numberStr - 1] = tableRow;
     }
-    public void ArrResize()
+    public override void ArrResize()
     {
         RowPKD[] tableRows2 = new RowPKD[rowsNum + 1];
         for (int i = 0; i < rowsNum; i++) tableRows2[i] = (RowPKD)tableRows[i].Clone();
         tableRows = tableRows2;
     }
-    public int GetRowsNum()
-    {
-        return (rowsNum);
-    }
     public RowPKD GetTableRow(int index)
     {
         return tableRows[index];
     }
-    public void Putfile(string fnamePKD)
+    public override void Putfile(String fnamePKD)
     {
-        string path = AppContext.BaseDirectory;
+        String path = AppContext.BaseDirectory;
         FileStream f = new FileStream(path + "/" + fnamePKD, FileMode.Create);
         StreamWriter stream = new StreamWriter(f, Encoding.GetEncoding(1251));
         for (int i = 0; i < GetRowsNum(); i++)
@@ -145,10 +114,10 @@ namespace Kurs2021Csharp
         stream.Close();
         f.Close();
     }
-    public int Getfile(string fnamePKD)
+    public override int Getfile(String fnamePKD)
     {
-        string path = AppContext.BaseDirectory + "/" + fnamePKD;
-        string str;
+        String path = AppContext.BaseDirectory + "/" + fnamePKD;
+        String str;
             if (File.Exists(path))
             {
                 FileStream f = new FileStream(path, FileMode.Open, FileAccess.Read);
@@ -177,9 +146,9 @@ namespace Kurs2021Csharp
         else return 0;
         return 1;
     }
-    public void ExpBigTable(string fname, int from, int to)
+    public void ExpBigTable(String fname, int from, int to)
     {
-        string path = AppContext.BaseDirectory;
+        String path = AppContext.BaseDirectory;
         FileStream f = new FileStream(path + "/" + fname, FileMode.Create);
         StreamWriter stream = new StreamWriter(f, Encoding.GetEncoding(1251));
         stream.Write("                                                           ЖУРНАЛ УЧЕТА ВЫПОЛНЕННОЙ ПРОЕКТНО-КОНСТРУКТОРСКОЙ ДОКУМЕНТАЦИИ\n\n");
@@ -214,9 +183,9 @@ namespace Kurs2021Csharp
             stream.Close();
             f.Close();
     }
-    public void ExpSmallTable(string fname, int from, int to)
+    public void ExpSmallTable(String fname, int from, int to)
     {
-            string path = AppContext.BaseDirectory;
+            String path = AppContext.BaseDirectory;
             FileStream f = new FileStream(path + "/" + fname, FileMode.Create);
             StreamWriter stream = new StreamWriter(f, Encoding.GetEncoding(1251));
             stream.Write("                                              ЖУРНАЛ УЧЕТА НОМЕРОВ ПРОЕКТНО-КОНСТРУКТОРСКОЙ ДОКУМЕНТАЦИИ\n\n");
@@ -245,7 +214,6 @@ namespace Kurs2021Csharp
             f.Close();
     }
     private RowPKD[] tableRows = new RowPKD[1];
-    private int rowsNum;
 }
 
 }

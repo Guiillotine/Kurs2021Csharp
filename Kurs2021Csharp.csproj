@@ -129,6 +129,7 @@
     <Compile Include="RequestZdForm.Designer.cs">
       <DependentUpon>RequestZdForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="TableClass.cs" />
     <EmbeddedResource Include="AddProjForm.resx">
       <DependentUpon>AddProjForm.cs</DependentUpon>
     </EmbeddedResource>

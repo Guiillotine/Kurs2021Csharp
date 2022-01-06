@@ -338,6 +338,7 @@ namespace Kurs2021Csharp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(1087, 268);
             this.Controls.Add(this.status);
             this.Controls.Add(this.surname);
@@ -361,6 +362,7 @@ namespace Kurs2021Csharp
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button_in_back);
             this.Controls.Add(this.label7);
+            this.MaximizeBox = false;
             this.Name = "CorrectZdForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Редактирование заданий";

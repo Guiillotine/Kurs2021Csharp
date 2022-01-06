@@ -37,42 +37,42 @@ namespace Kurs2021Csharp
         private void toolStripButtonAdd_Click(object sender, EventArgs e)
         {
             AddZdForm form = new AddZdForm();
-            form.Show();
+            form.ShowDialog();
         }
 
         private void toolStripButtonCorrect_Click(object sender, EventArgs e)
         {
             CorrectZdForm form = new CorrectZdForm();
-            form.Show();
+            form.ShowDialog();
         }
 
         private void toolStripButtonRequest_Click(object sender, EventArgs e)
         {
             RequestZdForm form = new RequestZdForm();
-            form.Show();
+            form.ShowDialog();
         }
 
         private void журналУчетаНомеровПКДToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Exp1 form = new Exp1();
-            form.Show();
+            form.ShowDialog();
         }
 
         private void журналУчетаВыполненнойПКДToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Exp2 form = new Exp2();
-            form.Show();
+            form.ShowDialog();
         }
 
         private void журналРегистрацииЗаданийToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Exp3 form = new Exp3();
-            form.Show();
+            form.ShowDialog();
         }
         private void справкаToolStripMenuItem_Click(object sender, EventArgs e)
         {
             HelpForm form = new HelpForm();
-            form.Show();
+            form.ShowDialog();
         }
         private void RegZdForm_Activated(object sender, EventArgs e)
         {

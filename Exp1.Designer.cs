@@ -125,6 +125,7 @@ namespace Kurs2021Csharp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(255, 164);
             this.Controls.Add(this.to);
             this.Controls.Add(this.from);
@@ -135,6 +136,7 @@ namespace Kurs2021Csharp
             this.Controls.Add(this.label5);
             this.Controls.Add(this.fileName);
             this.Controls.Add(this.label1);
+            this.MaximizeBox = false;
             this.Name = "Exp1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Экспорт журнала";
