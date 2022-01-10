@@ -29,6 +29,7 @@ namespace Kurs2021Csharp
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CorrectProjForm));
             this.taskNumber = new System.Windows.Forms.ComboBox();
             this.surname = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -60,6 +61,7 @@ namespace Kurs2021Csharp
             // 
             // taskNumber
             // 
+            this.taskNumber.Enabled = false;
             this.taskNumber.FormattingEnabled = true;
             this.taskNumber.Location = new System.Drawing.Point(107, 49);
             this.taskNumber.Name = "taskNumber";
@@ -316,6 +318,7 @@ namespace Kurs2021Csharp
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button_in_back);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "CorrectProjForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Редактирование проектов";

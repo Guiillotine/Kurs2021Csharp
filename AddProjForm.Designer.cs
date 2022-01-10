@@ -29,6 +29,7 @@ namespace Kurs2021Csharp
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddProjForm));
             this.taskNumber = new System.Windows.Forms.ComboBox();
             this.surname = new System.Windows.Forms.ComboBox();
             this.dateEnd = new System.Windows.Forms.MaskedTextBox();
@@ -315,6 +316,7 @@ namespace Kurs2021Csharp
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.buttonBack);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "AddProjForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

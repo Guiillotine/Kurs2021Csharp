@@ -62,7 +62,7 @@ namespace Kurs2021Csharp
             {
                 from = Convert.ToInt32(this.from.Text);
                 to = Convert.ToInt32(this.to.Text);
-                Globals.tablePKD.ExpSmallTable(this.fileName.Text, from, to);
+                Globals.tablePKD.ExpBigTable(this.fileName.Text, from, to);
                 MessageBox.Show("Таблица экспортирована в файл \"" + this.fileName.Text + "\"", "", MessageBoxButtons.OK, MessageBoxIcon.None);
                 this.fileName.Text = "";
             }

@@ -29,6 +29,7 @@ namespace Kurs2021Csharp
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CorrectZdForm));
             this.status = new System.Windows.Forms.ComboBox();
             this.surname = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -64,6 +65,7 @@ namespace Kurs2021Csharp
             // 
             // status
             // 
+            this.status.Enabled = false;
             this.status.FormattingEnabled = true;
             this.status.Items.AddRange(new object[] {
             "Принято",
@@ -362,6 +364,7 @@ namespace Kurs2021Csharp
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button_in_back);
             this.Controls.Add(this.label7);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "CorrectZdForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

@@ -29,6 +29,7 @@ namespace Kurs2021Csharp
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginForm));
             this.buttonOk = new System.Windows.Forms.Button();
             this.labelPassw = new System.Windows.Forms.Label();
             this.labelLog = new System.Windows.Forms.Label();
@@ -92,6 +93,7 @@ namespace Kurs2021Csharp
             this.Controls.Add(this.labelLog);
             this.Controls.Add(this.TBPassword);
             this.Controls.Add(this.TBLogin);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "LoginForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

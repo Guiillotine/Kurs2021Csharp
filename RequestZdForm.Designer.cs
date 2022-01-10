@@ -29,6 +29,7 @@ namespace Kurs2021Csharp
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RequestZdForm));
             this.status = new System.Windows.Forms.ComboBox();
             this.surname = new System.Windows.Forms.ComboBox();
             this.projNumber = new System.Windows.Forms.MaskedTextBox();
@@ -292,6 +293,7 @@ namespace Kurs2021Csharp
             this.Controls.Add(this.label7);
             this.Controls.Add(this.button_ok_req);
             this.Controls.Add(this.button_back_req);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "RequestZdForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

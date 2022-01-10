@@ -66,6 +66,7 @@ namespace Kurs2021Csharp
             this.ClientSize = new System.Drawing.Size(300, 412);
             this.Controls.Add(this.button_close);
             this.Controls.Add(this.textBox1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "HelpForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

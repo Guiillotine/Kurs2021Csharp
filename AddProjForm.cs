@@ -28,6 +28,7 @@ namespace Kurs2021Csharp
 				FileStream f = new FileStream(path, FileMode.Open, FileAccess.Read);
 				StreamReader stream = new StreamReader(f, Encoding.GetEncoding(1251));
 				int k = 0;
+				if (Globals.fmode == 1) 
 				while (!stream.EndOfStream)
 				{
 					str = stream.ReadLine();
@@ -46,6 +47,7 @@ namespace Kurs2021Csharp
 
 			if (Globals.fmode == 0) 
 			{
+				this.surname.Text = Globals.login;
 				this.dateEnd.Enabled = false;
 				this.volume.Enabled = false;
 				for (int i = 0; i < Globals.tableRegZd.GetRowsNum(); i++)
@@ -85,7 +87,7 @@ namespace Kurs2021Csharp
 			else if (f == 1) { f = 0; MessageBox.Show("Введены не все данные", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
 
 			if ((this.surname.Text == "") && (f == 1)) { f = 0; MessageBox.Show("Введены не все данные", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
-			if ((this.surname.Text != Globals.login) && (f == 1) && (Globals.fmode == 0)) { f = 0; MessageBox.Show("Укажите свою фамилию в поле \"Исполнитель\"", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+			//if ((this.surname.Text != Globals.login) && (f == 1) && (Globals.fmode == 0)) { f = 0; MessageBox.Show("Укажите свою фамилию в поле \"Исполнитель\"", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error); }
 			else row.SetSurname(this.surname.Text);
 
 			if (this.dateEnd.Text == "  .  .") row.SetDateEnd("00.00.0000");

@@ -29,6 +29,7 @@ namespace Kurs2021Csharp
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Exp3));
             this.to = new System.Windows.Forms.MaskedTextBox();
             this.from = new System.Windows.Forms.MaskedTextBox();
             this.buttonBack = new System.Windows.Forms.Button();
@@ -137,6 +138,7 @@ namespace Kurs2021Csharp
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.fileName);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "Exp3";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

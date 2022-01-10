@@ -30,7 +30,7 @@ namespace Kurs2021Csharp
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RegZdForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripButtonOpenPKD = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonOpenZd = new System.Windows.Forms.ToolStripButton();
@@ -163,6 +163,7 @@ namespace Kurs2021Csharp
             this.openPKDToolStripMenuItem.Name = "openPKDToolStripMenuItem";
             this.openPKDToolStripMenuItem.Size = new System.Drawing.Size(336, 22);
             this.openPKDToolStripMenuItem.Text = "Учет проектно-конструкторской документации";
+            this.openPKDToolStripMenuItem.Click += new System.EventHandler(this.toolStripButtonOpenZd_Click);
             // 
             // редактироватьToolStripMenuItem
             // 
@@ -177,15 +178,17 @@ namespace Kurs2021Csharp
             // 
             this.добавитьСтрокуToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("добавитьСтрокуToolStripMenuItem.Image")));
             this.добавитьСтрокуToolStripMenuItem.Name = "добавитьСтрокуToolStripMenuItem";
-            this.добавитьСтрокуToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
+            this.добавитьСтрокуToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.добавитьСтрокуToolStripMenuItem.Text = "Добавить строку";
+            this.добавитьСтрокуToolStripMenuItem.Click += new System.EventHandler(this.toolStripButtonAdd_Click);
             // 
             // изменитьСтрокуToolStripMenuItem
             // 
             this.изменитьСтрокуToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("изменитьСтрокуToolStripMenuItem.Image")));
             this.изменитьСтрокуToolStripMenuItem.Name = "изменитьСтрокуToolStripMenuItem";
-            this.изменитьСтрокуToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
+            this.изменитьСтрокуToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.изменитьСтрокуToolStripMenuItem.Text = "Изменить строку";
+            this.изменитьСтрокуToolStripMenuItem.Click += new System.EventHandler(this.toolStripButtonCorrect_Click);
             // 
             // найтиToolStripMenuItem
             // 
@@ -248,9 +251,9 @@ namespace Kurs2021Csharp
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.AllowUserToResizeColumns = false;
             this.dataGridView1.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
-            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
             this.dataGridView1.BackgroundColor = System.Drawing.Color.Honeydew;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -357,6 +360,7 @@ namespace Kurs2021Csharp
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dataGridView1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "RegZdForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Учет ПКД";
